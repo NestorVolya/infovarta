@@ -88,8 +88,8 @@ h1 .hash { color: var(--gold); }
   .intro .lede { font-size: 16px; }
   .istats { grid-template-columns: 1fr 1fr; }
   .istat .v { font-size: 24px; }
-  .iyears .cols, .iyears .cols-x { gap: 4px; }
-  .iyears .col, .iyears .cols-x span { min-width: 0; }
+  .cols, .cols-x { gap: 2px !important; }   /* правило вище за загальні .col — тому !important */
+  .col, .cols-x span { min-width: 0 !important; }
   .filters > div { flex: 1 1 100%; }
   .filters select, .filters input[type=search] { min-width: 0; width: 100%; }
   table.events { min-width: 640px; }
@@ -251,8 +251,8 @@ ol.miles li.key a[href="#film"] { font-size: 13px; color: var(--accent-ink); tex
 .mapbox g[style] { stroke: var(--card); }
 .mapbox .lb tspan.n { font-weight: 400; fill: var(--ink2); }
 .mapside .chipset-label { margin-top: 12px; }
-.mapsum { font-size: 14px; color: var(--ink2); line-height: 1.55; }
-.mapsum b { font-family: var(--f-head); font-size: 22px; color: var(--ink); margin-right: 4px; }
+.mapsum { font-size: 12px; color: var(--ink2); line-height: 1.55; }
+.mapsum b { font-family: var(--f-head); font-size: 20px; color: var(--ink); margin-right: 4px; }
 .mlegend { display: flex; gap: 2px; }
 .mlegend .sw { flex: 1; text-align: center; font-size: 11.5px; color: var(--ink2); }
 .mlegend .sw i { display: block; height: 14px; border-radius: 3px; margin-bottom: 3px; border: 1px solid var(--grid); }
@@ -335,7 +335,7 @@ tr.ev td .edited-flag { color: var(--accent-ink); font-size:11px; }
   border-radius:8px; padding:8px 10px; font-size:14px; font-family:inherit; }
 .ovrow { display:flex; gap:8px; align-items:center; margin-top:16px; }
 table.events { width: 100%; border-collapse: collapse; font-size: 13.5px; table-layout: fixed; }
-table.events col.c-date { width: 90px; } table.events col.c-title { width: auto; }
+table.events col.c-date { width: 108px; } table.events col.c-title { width: auto; }
 table.events col.c-dir { width: 180px; } table.events col.c-loc { width: 200px; }
 table.events td, table.events th { overflow-wrap: break-word; }
 table.events th {
@@ -343,7 +343,7 @@ table.events th {
   color: var(--muted); border-bottom: 1px solid var(--baseline); padding: 6px 10px 6px 4px; cursor: pointer; white-space: nowrap;
 }
 table.events td { padding: 7px 10px 7px 4px; border-bottom: 1px solid var(--grid); vertical-align: top; }
-table.events td.date { white-space: nowrap; color: var(--ink2); font-variant-numeric: tabular-nums; }
+table.events td.date { white-space: normal; color: var(--ink2); font-variant-numeric: tabular-nums; }
 table.events a { color: var(--accent-ink); text-decoration: none; }
 table.events a:hover { text-decoration: underline; }
 table.events .dir { color: var(--ink2); font-size: 12.5px; }
@@ -386,7 +386,7 @@ h1, .card h2, .intro h3, #notes h2, .istat .v, .kpi.hero .value, .mapsum b, tr.y
 .subnav a{font-size:13.5px;text-decoration:none;color:var(--ink2);padding:5px 11px;border-radius:999px}
 .subnav a:hover{background:var(--chip);color:var(--accent-ink)}
 .subnav a.on{background:var(--chip);color:var(--accent-ink);font-weight:600}
-#intro,#miles,#film,#press,#mapCard,#events,#notes,#eduSec,#statsMore{scroll-margin-top:64px}
+#intro,#miles,#film,#press,#mapCard,#events,#notes,#eduSec,#statsMore{scroll-margin-top:calc(var(--navh,52px) + 12px)}
 .card.gen{display:none!important}
 </style><style>
 .subnav a.ev{background:var(--accent);color:#fff;font-weight:600}
@@ -399,11 +399,18 @@ h1, .card h2, .intro h3, #notes h2, .istat .v, .kpi.hero .value, .mapsum b, tr.y
 #events{border:2px solid var(--accent);background:linear-gradient(var(--chip),var(--card) 140px);box-shadow:0 4px 18px rgba(42,120,214,.12)}
 #events>h2{font-size:22px}
 #events>h2::before{content:"▦ ";color:var(--accent)}
-#events .yearnav{top:52px;background:transparent;padding:8px 0}
+#events .yearnav{top:var(--navh,52px);background:var(--card);padding:8px 0;margin:0 -4px 10px;padding-left:4px;padding-right:4px}
 #events .yearnav button{font-size:14px;padding:6px 14px;border-color:var(--accent);color:var(--accent-ink);background:var(--card)}
 #events .yearnav button:hover{background:var(--accent);color:#fff}
 #events .yearnav button b{color:var(--ink2)}
-tr.yhead{scroll-margin-top:120px}
+tr.yhead{scroll-margin-top:calc(var(--navh,52px) + 70px)}
+@media (max-width:700px){
+  .subnav .wrap{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .subnav .wrap::-webkit-scrollbar{display:none}
+  .subnav a,.subnav .yrs button{flex:0 0 auto}
+  .subnav .yrs{flex-wrap:nowrap}
+  .subnav .yrs span{display:none}
+}
 </style>
 </head>
 <body>
@@ -1024,7 +1031,7 @@ function renderMap(ev){
   // ms — пікселів екрана на одиницю viewBox; підписи й легенда тримають сталий екранний розмір
   const ms=(svg.getBoundingClientRect().width||860)/W;
   svg.innerHTML = svg.querySelector("desc").outerHTML + `<g>${regions}</g><g>${circles}</g>`
-    + `<g style="font-size:${(13/ms).toFixed(1)}px;stroke-width:${(4/ms).toFixed(1)}px">${labels}</g>`;
+    + `<g style="font-size:${(11/ms).toFixed(1)}px;stroke-width:${(3.5/ms).toFixed(1)}px">${labels}</g>`;
 
   svg.querySelectorAll("[data-g]").forEach(el=>{
     const isCity=el.tagName==="circle", n=el.dataset.g, c=+el.dataset.c;
@@ -1135,11 +1142,11 @@ function campaignRow(key, items){
   const first=items[0];
   const dates=items.map(x=>x.date_raw||String(x.year));
   const span = dates.length>1 && dates[0]!==dates[dates.length-1]
-    ? `${dates[0]} – ${dates[dates.length-1]}` : dates[0];
+    ? `${esc(dates[0])}<br>– ${esc(dates[dates.length-1])}` : esc(dates[0]);
   const dirs=[...new Set(items.map(x=>x.direction).filter(Boolean))];
   const locs=[...new Set(items.map(x=>x.location).filter(Boolean))];
   return `<tr class="ev camp" data-grp="${esc(key)}">
-    <td class="date">${esc(span)}</td>
+    <td class="date">${span}</td>
     <td><span class="caret">${open?"▾":"▸"}</span> <b>${esc(groupLabel(items))}</b>
       <span class="tags">· ${nAkt(items.length)}</span></td>
     <td class="dir">${esc(dirs.length===1?dirs[0]:dirs.length?dirs.length+" напрями":"—")}</td>
@@ -1522,7 +1529,10 @@ let _rz; addEventListener("resize", ()=>{ clearTimeout(_rz); _rz=setTimeout(()=>
 <script>(function(){
 const L=[...document.querySelectorAll('.subnav a')];const T=L.map(a=>document.querySelector(a.getAttribute('href')));
 function on(){let k=0;T.forEach((t,i)=>{if(t&&t.getBoundingClientRect().top<90)k=i;});L.forEach((a,i)=>a.classList.toggle('on',i===k));}
-addEventListener('scroll',on,{passive:true});on();})();</script><script>(function(){
+addEventListener('scroll',on,{passive:true});on();
+const nv=document.querySelector('.subnav');
+function nh(){if(nv)document.documentElement.style.setProperty('--navh',nv.offsetHeight+'px');}
+nh();addEventListener('resize',nh);if(window.ResizeObserver&&nv)new ResizeObserver(nh).observe(nv);if(document.fonts)document.fonts.ready.then(nh);})();</script><script>(function(){
 const nav=document.querySelector('.subnav .wrap'); if(!nav) return;
 const ev=nav.querySelector('a[href="#events"]'); if(ev) ev.classList.add('ev');
 function build(){
