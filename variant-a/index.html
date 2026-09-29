@@ -382,6 +382,22 @@ footer { color: var(--muted); font-size: 12.5px; margin-top: 30px; border-top: 1
 .subnav a.on{background:var(--chip);color:var(--accent-ink);font-weight:600}
 #intro,#miles,#film,#press,#mapCard,#events,#notes,#eduSec,#statsMore{scroll-margin-top:64px}
 .card.gen{display:none!important}
+</style><style>
+.subnav a.ev{background:var(--accent);color:#fff;font-weight:600}
+.subnav a.ev:hover,.subnav a.ev.on{background:var(--accent-ink);color:#fff}
+.subnav .yrs{display:flex;gap:4px;flex-wrap:wrap;align-items:center;margin-left:8px;padding-left:10px;border-left:1px solid var(--grid)}
+.subnav .yrs span{font-size:12px;color:var(--muted);margin-right:2px}
+.subnav .yrs button{font:600 12.5px system-ui,sans-serif;font-variant-numeric:tabular-nums;border:1px solid var(--baseline);
+  background:var(--card);color:var(--accent-ink);border-radius:999px;padding:3px 9px;cursor:pointer}
+.subnav .yrs button:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+#events{border:2px solid var(--accent);background:linear-gradient(var(--chip),var(--card) 140px);box-shadow:0 4px 18px rgba(42,120,214,.12)}
+#events>h2{font-size:22px}
+#events>h2::before{content:"▦ ";color:var(--accent)}
+#events .yearnav{top:52px;background:transparent;padding:8px 0}
+#events .yearnav button{font-size:14px;padding:6px 14px;border-color:var(--accent);color:var(--accent-ink);background:var(--card)}
+#events .yearnav button:hover{background:var(--accent);color:#fff}
+#events .yearnav button b{color:var(--ink2)}
+tr.yhead{scroll-margin-top:120px}
 </style>
 </head>
 <body>
@@ -1501,6 +1517,20 @@ let _rz; addEventListener("resize", ()=>{ clearTimeout(_rz); _rz=setTimeout(()=>
 <script>(function(){
 const L=[...document.querySelectorAll('.subnav a')];const T=L.map(a=>document.querySelector(a.getAttribute('href')));
 function on(){let k=0;T.forEach((t,i)=>{if(t&&t.getBoundingClientRect().top<90)k=i;});L.forEach((a,i)=>a.classList.toggle('on',i===k));}
-addEventListener('scroll',on,{passive:true});on();})();</script>
+addEventListener('scroll',on,{passive:true});on();})();</script><script>(function(){
+const nav=document.querySelector('.subnav .wrap'); if(!nav) return;
+const ev=nav.querySelector('a[href="#events"]'); if(ev) ev.classList.add('ev');
+function build(){
+  let box=nav.querySelector('.yrs'); if(!box){box=document.createElement('div');box.className='yrs';nav.appendChild(box);}
+  const src=[...document.querySelectorAll('#yearNav button')];
+  box.innerHTML='<span>Події:</span>'+src.map(b=>'<button data-y="'+b.dataset.y+'">'+b.dataset.y+'</button>').join('');
+  box.querySelectorAll('button').forEach(b=>b.onclick=()=>{
+    const t=document.querySelector('#yearNav button[data-y="'+b.dataset.y+'"]');
+    if(t) t.click(); else document.querySelector('#events').scrollIntoView({behavior:'smooth'});
+  });
+}
+build();
+new MutationObserver(build).observe(document.querySelector('#yearNav'),{childList:true});
+})();</script>
 </body>
 </html>
