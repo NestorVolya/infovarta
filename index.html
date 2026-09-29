@@ -5,7 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>інфоВАРТА — дашборд подій</title>
 <style>
+@font-face { font-family: "RutheniaRada"; src: url("fonts/RutheniaRada-Regular.woff2") format("woff2"); font-display: swap; }
+@font-face { font-family: "RutheniaRadaText"; src: url("fonts/RutheniaRadaText-Regular.woff2") format("woff2"); font-display: swap; }
 :root {
+  --f-head: "RutheniaRada", Georgia, serif;
+  --f-text: "RutheniaRadaText", system-ui, -apple-system, "Segoe UI", sans-serif;
   color-scheme: light;
   --surface: #fcfcfb; --plane: #f7f6f2; --card: #ffffff;
   --ink: #14130f; --ink2: #52514e; --muted: #898781;
@@ -40,9 +44,9 @@
 * { box-sizing: border-box; }
 body {
   margin: 0; background: var(--plane); color: var(--ink);
-  font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+  font: 15px/1.5 var(--f-text);
 }
-.serif { font-family: Georgia, "Times New Roman", serif; }
+.serif { font-family: var(--f-head); }
 .wrap { max-width: 1240px; margin: 0 auto; padding: 0 20px 60px; }
 
 header.site {
@@ -50,7 +54,7 @@ header.site {
   padding: 26px 0 18px; margin-bottom: 22px;
 }
 header.site .wrap { display: flex; align-items: baseline; gap: 18px; flex-wrap: wrap; padding-bottom: 0; }
-h1 { font-family: Georgia, serif; font-size: 30px; margin: 0; font-weight: 700; letter-spacing: .2px; }
+h1 { font-family: var(--f-head); font-size: 30px; margin: 0; font-weight: 700; letter-spacing: .2px; }
 h1 .hash { color: var(--gold); }
 .subtitle { color: var(--ink2); font-size: 14px; }
 .spacer { flex: 1; }
@@ -61,15 +65,15 @@ h1 .hash { color: var(--gold); }
 .intro-logo { height: 84px; width: auto; mix-blend-mode: multiply; }
 :root[data-theme="dark"] .intro-logo { filter: invert(1); mix-blend-mode: screen; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .intro-logo { filter: invert(1); mix-blend-mode: screen; } }
-.intro-motto { font-family: Georgia, serif; font-size: 20px; color: var(--gold); font-style: italic; }
+.intro-motto { font-family: var(--f-head); font-size: 20px; color: var(--gold); font-style: italic; }
 .intro-stamp { margin-left: auto; font-size: 12px; color: var(--muted); text-align: right; }
-.intro .lede { font-family: Georgia, serif; font-size: 17.5px; line-height: 1.6; margin: 0 0 18px; max-width: 980px; }
+.intro .lede { font-family: var(--f-head); font-size: 17.5px; line-height: 1.6; margin: 0 0 18px; max-width: 980px; }
 .intro .lede b { color: var(--accent-ink); }
-.intro h3 { font-family: Georgia, serif; font-size: 16px; margin: 0 0 10px; font-weight: 600; }
-.intro h3 small { font-family: system-ui, sans-serif; font-weight: 400; color: var(--muted); font-size: 12px; }
+.intro h3 { font-family: var(--f-head); font-size: 16px; margin: 0 0 10px; font-weight: 600; }
+.intro h3 small { font-family: var(--f-text); font-weight: 400; color: var(--muted); font-size: 12px; }
 .istats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-bottom: 20px; }
 .istat { background: var(--surface); border: 1px solid var(--grid); border-radius: 10px; padding: 12px 14px; }
-.istat .v { font-family: Georgia, serif; font-size: 30px; font-weight: 700; line-height: 1.1; color: var(--ink); }
+.istat .v { font-family: var(--f-head); font-size: 30px; font-weight: 700; line-height: 1.1; color: var(--ink); }
 .istat .l { font-size: 13px; color: var(--ink2); margin-top: 2px; }
 .istat .s { font-size: 12px; color: var(--muted); }
 .igrid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 26px; margin-bottom: 20px; }
@@ -122,7 +126,7 @@ ol.miles li.mourn::before { background: var(--ink2); border-color: var(--ink2); 
 sup { line-height: 0; font-size: 70%; }
 sup a { text-decoration: none; color: var(--accent-ink); padding: 0 1px; }
 #notes { margin-top: 26px; }
-#notes h2 { font-family: Georgia, serif; font-size: 17px; margin: 0 0 8px; }
+#notes h2 { font-family: var(--f-head); font-size: 17px; margin: 0 0 8px; }
 #notes ol { font-size: 13.5px; line-height: 1.6; padding-left: 26px; margin: 0; }
 #notes li { margin: 8px 0; color: var(--ink2); border-radius: 5px; padding: 4px 8px; transition: background .3s; }
 #notes li a { color: var(--accent-ink); word-break: break-all; }
@@ -151,14 +155,14 @@ button.ghost:hover { border-color: var(--accent); color: var(--accent-ink); }
 .kpi { background: var(--card); border: 1px solid var(--ring); border-radius: 12px; padding: 14px 16px; }
 .kpi .label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
 .kpi .value { font-size: 34px; font-weight: 600; line-height: 1.15; margin-top: 2px; }
-.kpi.hero .value { font-size: 48px; font-family: Georgia, serif; color: var(--accent-ink); }
+.kpi.hero .value { font-size: 48px; font-family: var(--f-head); color: var(--accent-ink); }
 .kpi .sub { font-size: 12px; color: var(--ink2); }
 
 .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
 @media (max-width: 900px) { .grid2 { grid-template-columns: 1fr; } }
 .card { background: var(--card); border: 1px solid var(--ring); border-radius: 12px; padding: 16px 18px; }
-.card h2 { font-family: Georgia, serif; font-size: 17px; margin: 0 0 12px; font-weight: 600; }
-.card h2 small { color: var(--muted); font-weight: 400; font-family: system-ui, sans-serif; font-size: 12px; }
+.card h2 { font-family: var(--f-head); font-size: 17px; margin: 0 0 12px; font-weight: 600; }
+.card h2 small { color: var(--muted); font-weight: 400; font-family: var(--f-text); font-size: 12px; }
 
 /* колонки по роках */
 .cols { display: flex; align-items: flex-end; gap: 10px; height: 190px; padding-top: 8px; border-bottom: 1px solid var(--baseline); }
@@ -191,7 +195,7 @@ button.ghost:hover { border-color: var(--accent); color: var(--accent-ink); }
   border-radius: 0 10px 10px 0; max-width: 980px; }
 .mandate p { margin: 0 0 6px; color: var(--ink2); }
 .mandate-label { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--gold); font-weight: 700; margin-bottom: 6px; }
-.mandate-quote { font-family: Georgia, serif; font-size: 19px; line-height: 1.45; color: var(--ink) !important; font-style: italic; }
+.mandate-quote { font-family: var(--f-head); font-size: 19px; line-height: 1.45; color: var(--ink) !important; font-style: italic; }
 .mandate-note { font-size: 13.5px; margin-bottom: 0 !important; }
 /* ПРЕСА */
 .press { border-top: 1px solid var(--grid); padding-top: 18px; margin: 0 0 20px; }
@@ -242,13 +246,13 @@ ol.miles li.key a[href="#film"] { font-size: 13px; color: var(--accent-ink); tex
 .b3 { fill: var(--seq5); } .b4 { fill: var(--seq7); }
 .mapbox .ct { fill: var(--gold); fill-opacity: .9; stroke: var(--card); stroke-width: 1.5; cursor: pointer; }
 .mapbox .ct:hover, .mapbox .ct.sel { stroke: var(--ink); stroke-width: 2; }
-.mapbox .lb { font-family: system-ui, sans-serif; font-weight: 600; fill: var(--ink); paint-order: stroke;
+.mapbox .lb { font-family: var(--f-text); font-weight: 600; fill: var(--ink); paint-order: stroke;
   stroke: var(--card); stroke-linejoin: round; pointer-events: none; }
 .mapbox g[style] { stroke: var(--card); }
 .mapbox .lb tspan.n { font-weight: 400; fill: var(--ink2); }
 .mapside .chipset-label { margin-top: 12px; }
 .mapsum { font-size: 14px; color: var(--ink2); line-height: 1.55; }
-.mapsum b { font-family: Georgia, serif; font-size: 22px; color: var(--ink); margin-right: 4px; }
+.mapsum b { font-family: var(--f-head); font-size: 22px; color: var(--ink); margin-right: 4px; }
 .mlegend { display: flex; gap: 2px; }
 .mlegend .sw { flex: 1; text-align: center; font-size: 11.5px; color: var(--ink2); }
 .mlegend .sw i { display: block; height: 14px; border-radius: 3px; margin-bottom: 3px; border: 1px solid var(--grid); }
@@ -299,10 +303,10 @@ ol.miles li.key a[href="#film"] { font-size: 13px; color: var(--accent-ink); tex
 .yearnav button b { color: var(--muted); font-weight: 400; margin-left: 4px; }
 table.events thead th { position: sticky; top: 0; background: var(--card); z-index: 5; }
 tr.yhead td {
-  font-family: Georgia, serif; font-size: 19px; font-weight: 700; color: var(--accent-ink);
+  font-family: var(--f-head); font-size: 19px; font-weight: 700; color: var(--accent-ink);
   border-bottom: 2px solid var(--baseline); padding: 18px 4px 6px; background: var(--card);
 }
-tr.yhead td small { font-family: system-ui, sans-serif; font-size: 12px; color: var(--muted); font-weight: 400; }
+tr.yhead td small { font-family: var(--f-text); font-size: 12px; color: var(--muted); font-weight: 400; }
 tr.mhead td {
   font-size: 11.5px; text-transform: uppercase; letter-spacing: .08em; color: var(--gold);
   padding: 10px 4px 3px; border-bottom: 1px solid var(--grid); background: var(--card);
@@ -324,7 +328,7 @@ tr.ev td .edited-flag { color: var(--accent-ink); font-size:11px; }
 .ov[hidden] { display:none; }
 .ovbox { background:var(--card); border:1px solid var(--ring); border-radius:14px;
   padding:20px 22px; width:min(520px,100%); max-height:90vh; overflow:auto; box-shadow:0 10px 40px rgba(0,0,0,.3); }
-.ovbox h3 { font-family:Georgia,serif; }
+.ovbox h3 { font-family:var(--f-head); }
 .ovbox label { display:block; font-size:11.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin:12px 0 3px; }
 .ovbox input, .ovbox textarea, .ovbox select {
   width:100%; background:var(--surface); color:var(--ink); border:1px solid var(--baseline);
@@ -369,6 +373,9 @@ button.solid:hover { background: var(--accent-ink); }
   border-radius: 8px; padding: 7px 10px; max-width: 320px; box-shadow: 0 4px 14px rgba(0,0,0,.25);
 }
 footer { color: var(--muted); font-size: 12.5px; margin-top: 30px; border-top: 1px solid var(--grid); padding-top: 12px; }
+/* RutheniaRada — лише звичайне накреслення: без штучного жирного й курсиву */
+h1, .card h2, .intro h3, #notes h2, .istat .v, .kpi.hero .value, .mapsum b, tr.yhead td,
+.intro-motto, .mandate-quote, .ovbox h3 { font-synthesis: none; font-style: normal; }
 </style>
 <style>#addCard,#editOverlay{display:none!important}</style>
 <style>
@@ -744,7 +751,7 @@ tr.yhead{scroll-margin-top:120px}
     </ol>
   </section>
 
-  <footer>Громадська ініціатива #інфоВАРТА · дані — база подій ініціативи (Notion «ПОДІЇ інфоВАРТИ по роках», таблиці, архів дописів Facebook) · цифри — фактичні записи бази, заявлені ініціативою цифри подано з атрибуцією · довідка станом на 29.09.2026 · <a href="https://abetkarutenia.com.ua/contact/">контакти</a></footer>
+  <footer>Громадська ініціатива #інфоВАРТА · дані — база подій ініціативи (Notion «ПОДІЇ інфоВАРТИ по роках», таблиці, архів дописів Facebook) · цифри — фактичні записи бази, заявлені ініціативою цифри подано з атрибуцією · довідка станом на 29.09.2026 · <a href="https://abetkarutenia.com.ua/contact/">контакти</a><br>Шрифти: RutheniaRada © Василь Чебаник, 2023; RutheniaRadaText © Василь Чебаник, Аліна фон Ерцен-Глєрон, Анжеліка Корнієнко, 2023 — ліцензія <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.uk">CC BY-SA 4.0</a>, <a href="https://abetkarutenia.com.ua/fonts/">abetkarutenia.com.ua</a>.</footer>
 </div>
 
 <div class="lb" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Перегляд фото">
