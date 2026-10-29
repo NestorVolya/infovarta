@@ -44,3 +44,7 @@ main{overflow-wrap:anywhere}.recent-entry>div,.speech,.journal-cover{min-width:0
 
 /* Related analysis is linked separately from the documentary sources. */
 .related-context{margin-top:28px;padding:22px;border-left:4px solid var(--red);background:var(--soft);min-width:0;overflow-wrap:anywhere}.related-label{font-size:calc(var(--reading-size)*.75);font-weight:700;letter-spacing:.06em;color:var(--muted);margin:0 0 10px}.related-title{display:inline-block;font-size:calc(var(--reading-size)*1.05);line-height:1.4;font-weight:700;max-width:100%;overflow-wrap:anywhere}.related-context p:not(.related-label),.related-analysis>p{font-size:var(--reading-size);line-height:1.65;margin:14px 0 0}.related-analysis .section-heading h2{font-size:32px}.related-context a{min-height:44px}@media(max-width:480px){.related-context{padding:18px 16px;margin-top:24px}.related-analysis .section-heading h2{font-size:29px}}
+
+/* Compact white lettering in the header. */
+.topbar .header-name{display:block;flex-shrink:0;line-height:0}.header-name img{display:block;width:112px;height:64px;object-fit:contain;filter:brightness(0) invert(1)}
+@media(max-width:380px){.header-name img{width:100px;height:60px}}
