@@ -56,3 +56,7 @@ body{color:var(--text);background:#FFFFFF}h1,h2,h3{font-family:HeadingRada,Inter
 @media(max-width:900px){.contact-grid{grid-template-columns:1fr}.contacts-intro{align-items:flex-start;flex-direction:column;gap:18px}.contacts-intro>p{max-width:none}.contact-card{padding:20px 22px}.contact-value{font-size:20px}.contact-form-link{justify-content:flex-start}.contact-grid .contact-card{gap:6px}}
 @media(max-width:760px){.contacts-section{padding-top:40px;padding-bottom:40px}.site-header nav{gap:24px;flex-wrap:wrap}}
 @media(max-width:430px){.site-header nav{gap:20px}.contact-card{padding:18px}.contact-value{font-size:18px}}
+
+/* Keep editable specimens distinct from the source images. */
+.try-panel{background:#FFF8F8;border-color:#EFC9C9;border-left-color:var(--accent);box-shadow:0 3px 14px #0D0E0E05}.test-field input{background:#FFFFFF;border:1px solid #D5BDBD;border-radius:4px;padding:8px 12px;min-height:46px}.test-field input:focus{border-color:var(--accent-deep)}.try-intro h3{font-size:22px}.live-specimen{margin-top:18px;margin-bottom:20px;padding:17px 18px 20px;min-height:150px;background:#FFF8F8;border:1px solid #F1D2D2;border-left:3px solid var(--accent);border-radius:0 4px 4px 0}.live-specimen>.micro-label{display:block;color:var(--accent-deep);font-size:11px;letter-spacing:1.1px}.live-specimen .sample{margin-top:13px}.live-specimen .case-note{margin-top:12px;color:var(--text)}
+@media(max-width:760px){.live-specimen{padding:16px 16px 18px;min-height:140px}.try-intro h3{font-size:22px}}
