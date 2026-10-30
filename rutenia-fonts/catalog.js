@@ -88,8 +88,16 @@
       const item = catalog.find(font => font.id === card.dataset.font);
       if (!item) continue;
       const points = item.points;
-      const missing = [...new Set([...text].filter(char => !/\s/u.test(char) && !points.has(char.codePointAt(0))))];
-      card.querySelector('.sample').textContent = [...text].map(char => /\s/u.test(char) || points.has(char.codePointAt(0)) ? char : '□').join('');
+      const characters = [...text];
+      const displayed = characters.map(char => item.caseSubstitutions?.[char] || char);
+      const substituted = displayed.some((char, index) => char !== characters[index]);
+      const missing = [...new Set(displayed.filter(char => !/\s/u.test(char) && !points.has(char.codePointAt(0))))];
+      card.querySelector('.sample').textContent = displayed.map(char => /\s/u.test(char) || points.has(char.codePointAt(0)) ? char : '□').join('');
+      const caseNote = card.querySelector('.case-note');
+      caseNote.textContent = item.uppercaseOnly
+        ? 'У наборі лише великі літери.'
+        : 'Відсутні малі літери замінено великими.';
+      caseNote.hidden = !text.trim() || !(item.uppercaseOnly || substituted);
       const notice = card.querySelector('.missing-glyphs');
       notice.textContent = missing.length ? `У файлі немає символів: ${missing.join(' ')}` : '';
       notice.hidden = missing.length === 0;
@@ -131,7 +139,7 @@
     if (event.key === 'ArrowRight') { event.preventDefault(); stepImage(1); }
     if (event.key === 'ArrowLeft') { event.preventDefault(); stepImage(-1); }
   });
-  fetch('catalog-data.json?v=license-20261031').then(response => {
+  fetch('catalog-data.json?v=case-20261031').then(response => {
     if (!response.ok) throw new Error('Catalogue unavailable');
     return response.json();
   }).then(items => {
@@ -179,4 +187,5 @@
     downloadButtons.forEach(button => { button.disabled = true; });
   });
 })();
+
 
