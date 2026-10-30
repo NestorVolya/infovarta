@@ -107,11 +107,19 @@
     document.documentElement.style.setProperty('--sample-size', `${size.value}px`);
     document.querySelector('#size-value').value = size.value;
   }
+  function setCompositionViewport(frame, item) {
+    const crop = item.crop || {x: 0, y: 0, width: item.width, height: item.height};
+    frame.style.setProperty('--crop-aspect', String(crop.width / crop.height));
+    frame.style.setProperty('--crop-scale', `${100 * item.width / crop.width}%`);
+    frame.style.setProperty('--crop-left', `${-100 * crop.x / crop.width}%`);
+    frame.style.setProperty('--crop-top', `${-100 * crop.y / crop.height}%`);
+  }
   function showImage() {
     const item = gallery.images[galleryIndex];
     const image = document.querySelector('#dialog-image');
     image.src = item.path;
     image.alt = item.alt;
+    setCompositionViewport(document.querySelector('#dialog-composition-frame'), item);
     document.querySelector('#dialog-title').textContent = gallery.label;
     document.querySelector('#dialog-position').textContent = `${galleryIndex + 1} з ${gallery.images.length} / ${gallery.name}`;
     document.querySelector('#dialog-original').href = item.original_url;
@@ -139,7 +147,7 @@
     if (event.key === 'ArrowRight') { event.preventDefault(); stepImage(1); }
     if (event.key === 'ArrowLeft') { event.preventDefault(); stepImage(-1); }
   });
-  fetch('catalog-data.json?v=case-20261031').then(response => {
+  fetch('catalog-data.json?v=brand-20261031').then(response => {
     if (!response.ok) throw new Error('Catalogue unavailable');
     return response.json();
   }).then(items => {
@@ -187,5 +195,6 @@
     downloadButtons.forEach(button => { button.disabled = true; });
   });
 })();
+
 
 
