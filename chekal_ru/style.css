@@ -48,3 +48,6 @@ main{overflow-wrap:anywhere}.recent-entry>div,.speech,.journal-cover{min-width:0
 /* Compact white lettering in the header. */
 .topbar .header-name{display:block;flex-shrink:0;line-height:0}.header-name img{display:block;width:112px;height:64px;object-fit:contain;filter:brightness(0) invert(1)}
 @media(max-width:380px){.header-name img{width:100px;height:60px}}
+
+/* Compact cover caption aligned only below the photo. */
+.hero-photo-figure{min-width:0;margin:0;align-self:start}.hero .hero-composition .hero-photo-figure figcaption{font-size:calc(var(--reading-size)*.8/3);line-height:1.4;margin-top:4px;color:var(--muted)}.hero-photo-figure figcaption sup.refs{font-size:.85em;line-height:inherit;vertical-align:baseline}.hero-photo-figure figcaption sup.refs a{font-weight:400;padding:0 1px}
