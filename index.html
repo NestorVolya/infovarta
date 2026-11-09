@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="uk" data-font="arial">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,7 +7,8 @@
 <script>
 // Restore the font before first paint; storage may be disabled in private browsing.
 try {
-  if (localStorage.getItem("iv-font") === "arial") document.documentElement.dataset.font = "arial";
+  const savedFont = localStorage.getItem("iv-font");
+  if (savedFont === "arial" || savedFont === "rada") document.documentElement.dataset.font = savedFont;
 } catch (_) {}
 </script>
 <style>
@@ -441,7 +442,7 @@ tr.yhead{scroll-margin-top:calc(var(--navh,52px) + 70px)}
     <label class="font-control" for="fontSelect">Шрифт
       <select id="fontSelect">
         <option value="rada">Рутенія Рада</option>
-        <option value="arial">Rutenia Arial</option>
+        <option value="arial" selected>Rutenia Arial</option>
       </select>
     </label>
   </div>
