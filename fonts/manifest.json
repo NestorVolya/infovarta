@@ -375,6 +375,30 @@
         "13": "Ukrainian Institute of Intellectual Property N 107878 ",
         "14": null
       }
+    },
+    {
+      "path": "fonts/krasnopyschebanyk/KrasnopysChebanyk-Regular.woff",
+      "bytes": 18524,
+      "sha256": "e4de03145d4c35125ad29be17f32fc1b98070cf943d7a0c7fba6e53586be1e04",
+      "source_page": "https://abetkarutenia.com.ua/product/krasnopyschebanyk/",
+      "download_url": null,
+      "origin": "набір файлів автора каталогу (11.11.2026); вебформат тієї самої збірки, що й TTF з сайту (head.modified 2022-11-03)"
+    },
+    {
+      "path": "fonts/rutenia-italic/Rutenia2008VasylChebanykItalic.woff",
+      "bytes": 12468,
+      "sha256": "0af11bf946aad8178ec7d47f902edf1630a9aaf92bbf72970b1547238daaead7",
+      "source_page": "https://abetkarutenia.com.ua/product/rutenia-italic/",
+      "download_url": null,
+      "origin": "набір файлів автора каталогу (11.11.2026); вебформат тієї самої збірки, що й TTF з сайту (head.modified 2022-11-03)"
+    },
+    {
+      "path": "fonts/ruteniaarial2009/RuteniaArial2009VasylChebanyk.woff",
+      "bytes": 7188,
+      "sha256": "0fbf012bb663f0e79e02f4b4cbbc544b1ce696275ef535ec9d51f8c4eab07270",
+      "source_page": "https://abetkarutenia.com.ua/product/ruteniaarial2009/",
+      "download_url": null,
+      "origin": "набір файлів автора каталогу (11.11.2026); вебформат тієї самої збірки, що й TTF з сайту (head.modified 2022-11-03)"
     }
   ]
 }
